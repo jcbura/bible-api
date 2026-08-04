@@ -35,7 +35,6 @@ async function bootstrap() {
     .setTitle('bible api')
     .setDescription('bible api docs')
     .setVersion('0.0.1')
-    .addBearerAuth()
     .build();
 
   const documentFactory = () =>
