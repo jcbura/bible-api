@@ -1,4 +1,6 @@
+import { BooksModule } from '@/modules/books/books.module';
 import { DrizzleModule } from '@/modules/drizzle/drizzle.module';
+import { TranslationsModule } from '@/modules/translations/translations.module';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
 
@@ -24,6 +26,8 @@ import { ThrottlerModule } from '@nestjs/throttler';
       ],
     }),
     DrizzleModule,
+    BooksModule,
+    TranslationsModule,
   ],
   controllers: [],
   providers: [],
