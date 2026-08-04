@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: bible_drizzle_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: bible_drizzle_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - bible_drizzle_db:/var/lib/postgresql/data
+
+volumes:
+  bible_drizzle_db:

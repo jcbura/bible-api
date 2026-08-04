@@ -1,0 +1,248 @@
+{
+  "id": "91b25212-42f1-4a62-b72c-98408bfeb0f9",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.books": {
+      "name": "books",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "testament": {
+          "name": "testament",
+          "type": "testament",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "book_order": {
+          "name": "book_order",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "books_name_unique": {
+          "name": "books_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "books_order_unique": {
+          "name": "books_order_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "book_order"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.chapters": {
+      "name": "chapters",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "book_id": {
+          "name": "book_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chapter_number": {
+          "name": "chapter_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "chapters_book_id_books_id_fk": {
+          "name": "chapters_book_id_books_id_fk",
+          "tableFrom": "chapters",
+          "tableTo": "books",
+          "columnsFrom": [
+            "book_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "chapters_book_chapter_unique": {
+          "name": "chapters_book_chapter_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "book_id",
+            "chapter_number"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.translations": {
+      "name": "translations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "translations_name_unique": {
+          "name": "translations_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.verses": {
+      "name": "verses",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "translation_id": {
+          "name": "translation_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "chapter_id": {
+          "name": "chapter_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verse_number": {
+          "name": "verse_number",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "text": {
+          "name": "text",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "verses_translation_id_translations_id_fk": {
+          "name": "verses_translation_id_translations_id_fk",
+          "tableFrom": "verses",
+          "tableTo": "translations",
+          "columnsFrom": [
+            "translation_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "verses_chapter_id_chapters_id_fk": {
+          "name": "verses_chapter_id_chapters_id_fk",
+          "tableFrom": "verses",
+          "tableTo": "chapters",
+          "columnsFrom": [
+            "chapter_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "verses_chapter_translation_verse_unique": {
+          "name": "verses_chapter_translation_verse_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "chapter_id",
+            "translation_id",
+            "verse_number"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.testament": {
+      "name": "testament",
+      "schema": "public",
+      "values": [
+        "OLD",
+        "NEW"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
