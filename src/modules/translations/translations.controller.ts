@@ -21,10 +21,10 @@ export class TranslationsController {
 
   @ApiOperation({ summary: 'Get translation' })
   @ApiOkResponse({ type: BaseTranslationsResponseDto })
-  @Get(':id')
+  @Get(':translationId')
   async find(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('translationId', ParseIntPipe) translationId: number,
   ): Promise<TranslationsResponseDto> {
-    return this.translationsService.find(id);
+    return this.translationsService.find(translationId);
   }
 }

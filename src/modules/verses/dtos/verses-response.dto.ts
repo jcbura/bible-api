@@ -1,6 +1,6 @@
 import { withBaseArrayResponse, withBaseResponse } from '@/common/utils';
 import { BooksLiteResponseDto } from '@/modules/books/dtos/books-response.dto';
-import { ChaptersLiteResponseDto } from '@/modules/books/dtos/chapters-response.dto';
+import { ChaptersLiteResponseDto } from '@/modules/chapters/dtos/chapters-response.dto';
 import { TranslationsResponseDto } from '@/modules/translations/dtos/translations-response.dto';
 import { ApiProperty } from '@nestjs/swagger';
 

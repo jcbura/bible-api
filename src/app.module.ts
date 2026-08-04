@@ -1,6 +1,8 @@
 import { BooksModule } from '@/modules/books/books.module';
+import { ChaptersModule } from '@/modules/chapters/chapters.module';
 import { DrizzleModule } from '@/modules/drizzle/drizzle.module';
 import { TranslationsModule } from '@/modules/translations/translations.module';
+import { VersesModule } from '@/modules/verses/verses.module';
 import { Module } from '@nestjs/common';
 import { ThrottlerModule } from '@nestjs/throttler';
 
@@ -27,7 +29,9 @@ import { ThrottlerModule } from '@nestjs/throttler';
     }),
     DrizzleModule,
     BooksModule,
+    ChaptersModule,
     TranslationsModule,
+    VersesModule,
   ],
   controllers: [],
   providers: [],

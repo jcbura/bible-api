@@ -12,14 +12,16 @@ export class TranslationsService {
     return this.drizzleService.db.select().from(translations);
   }
 
-  async find(id: number): Promise<TranslationsResponseDto> {
+  async find(translationId: number): Promise<TranslationsResponseDto> {
     const [translation] = await this.drizzleService.db
       .select()
       .from(translations)
-      .where(eq(translations.id, id));
+      .where(eq(translations.id, translationId));
 
     if (!translation) {
-      throw new NotFoundException(`Translation with id ${id} not found`);
+      throw new NotFoundException(
+        `translation with id ${translationId} not found`,
+      );
     }
 
     return translation;
