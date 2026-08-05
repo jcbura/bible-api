@@ -28,6 +28,7 @@ GET /books/:bookId/chapters/:chapterNumber/verses/:verseNumber
 
 ```bash
 git clone https://github.com/jcbura/bible-api.git
+
 cd bible-api
 ```
 
