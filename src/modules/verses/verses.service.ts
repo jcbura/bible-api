@@ -6,7 +6,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { and, eq, gte, lte, SQL } from 'drizzle-orm';
+import { and, asc, eq, gte, lte, SQL } from 'drizzle-orm';
 
 @Injectable()
 export class VersesService {
@@ -65,7 +65,8 @@ export class VersesService {
           eq(translations.name, translation),
         ),
       )
-      .where(conditions.length ? and(...conditions) : undefined);
+      .where(conditions.length ? and(...conditions) : undefined)
+      .orderBy(asc(verses.verseNumber));
   }
 
   async find(
@@ -112,7 +113,8 @@ export class VersesService {
           eq(translations.name, translation),
         ),
       )
-      .where(eq(verses.verseNumber, verseNumber));
+      .where(eq(verses.verseNumber, verseNumber))
+      .orderBy(asc(verses.verseNumber));
 
     if (!verse) {
       throw new NotFoundException(

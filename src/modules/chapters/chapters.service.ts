@@ -2,7 +2,7 @@ import { books, chapters } from '@/common/drizzle';
 import { ChaptersResponseDto } from '@/modules/chapters/dtos';
 import { DrizzleService } from '@/modules/drizzle/drizzle.service';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, asc, eq } from 'drizzle-orm';
 
 @Injectable()
 export class ChaptersService {
@@ -21,7 +21,8 @@ export class ChaptersService {
       })
       .from(chapters)
       .innerJoin(books, eq(books.id, chapters.bookId))
-      .where(eq(chapters.bookId, bookId));
+      .where(eq(chapters.bookId, bookId))
+      .orderBy(asc(chapters.chapterNumber));
   }
 
   async find(
@@ -43,7 +44,8 @@ export class ChaptersService {
         books,
         and(eq(books.id, chapters.bookId), eq(books.id, bookId)),
       )
-      .where(eq(chapters.chapterNumber, chapterNumber));
+      .where(eq(chapters.chapterNumber, chapterNumber))
+      .orderBy(asc(chapters.chapterNumber));
 
     if (!chapter) {
       throw new NotFoundException(
